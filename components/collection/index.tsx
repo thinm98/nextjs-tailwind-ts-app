@@ -4,10 +4,12 @@ import ListProduct from "./listProduct";
 
 const Collection = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <Information />
-      <Filter />
-      <ListProduct />
+      <div className="flex flex-col gap-4 p-4">
+        <Filter />
+        <ListProduct />
+      </div>
     </div>
   );
 };
