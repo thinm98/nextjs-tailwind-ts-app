@@ -1,6 +1,7 @@
 import AnnouncementBar from "./announcementBar";
 import HeaderAction from "./headerAction";
 import Image from "next/image";
+
 const Header = () => {
   return (
     <div>
