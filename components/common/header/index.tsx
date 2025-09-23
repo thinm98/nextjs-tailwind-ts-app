@@ -81,7 +81,10 @@ const Header = () => {
             ],
           },
         ],
-        images: ["https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/image/1800x/71252117777b696995f01934522c402d/k/m/kmyb_imax_2000x3000-min.jpg", "https://static.minhtuanmobile.com/uploads/editer/2025-03/06/images/lich-chieu-thanh-guom-diet-quy-vo-han-thanh-tai-viet-nam-1.webp"],
+        images: [
+          "https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/image/1800x/71252117777b696995f01934522c402d/k/m/kmyb_imax_2000x3000-min.jpg",
+          "https://static.minhtuanmobile.com/uploads/editer/2025-03/06/images/lich-chieu-thanh-guom-diet-quy-vo-han-thanh-tai-viet-nam-1.webp",
+        ],
       },
       {
         name: "Test2",
@@ -97,8 +100,9 @@ const Header = () => {
             ],
           },
         ],
-        images: ["https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/image/1800x/71252117777b696995f01934522c402d/k/m/kmyb_imax_2000x3000-min.jpg"],
-
+        images: [
+          "https://iguov8nhvyobj.vcdn.cloud/media/catalog/product/cache/1/image/1800x/71252117777b696995f01934522c402d/k/m/kmyb_imax_2000x3000-min.jpg",
+        ],
       },
     ],
     quickLinks: [
@@ -113,11 +117,9 @@ const Header = () => {
       {
         name: "Test1-4-3",
         href: "/test1-4-3",
-      }
+      },
     ],
-
-
-  }
+  };
   return (
     <div>
       <AnnouncementBar />
