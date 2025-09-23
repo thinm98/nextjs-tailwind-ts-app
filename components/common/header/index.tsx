@@ -1,4 +1,3 @@
-import AnnouncementBar from "./announcementBar";
 import HeaderAction from "./headerAction";
 const Header = () => {
   const navigation = {
@@ -120,12 +119,7 @@ const Header = () => {
       },
     ],
   };
-  return (
-    <div>
-      <AnnouncementBar />
-      <HeaderAction navigation={navigation} />
-    </div>
-  );
+  return <HeaderAction navigation={navigation} />;
 };
 
 export default Header;
