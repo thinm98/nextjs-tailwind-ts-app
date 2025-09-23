@@ -1,0 +1,30 @@
+.best-sellers-block {
+  .product-item {
+    cursor: pointer;
+
+    &:hover {
+      .product-info {
+        h3 {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .best-sellers-swiper {
+    padding-bottom: 40px;
+
+    .swiper-button-prev,
+    .swiper-button-next {
+      color: #000;
+
+      &:after {
+        font-size: 24px;
+      }
+    }
+
+    .swiper-pagination {
+      color: #666;
+    }
+  }
+}
