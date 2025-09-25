@@ -156,3 +156,6 @@ body {
 .footer-menu-link:hover {
   padding-left: 12px;
 }
+
+@import "swiper/css";
+@import "swiper/css/pagination";

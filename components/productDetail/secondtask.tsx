@@ -36,7 +36,6 @@ function hexFamily(hex: string) {
   return "blue";
 }
 
-
 function suggestSameColor(
   current: Product,
   currentColor: string,
@@ -51,7 +50,7 @@ function suggestSameColor(
     const pfam = colorFamily(v?.colorCode || v?.color || "");
     const sameFamily = pfam === fam ? 1 : 0;
     const crossCategory = p.categoryId !== current.categoryId ? 1 : 0;
-    return { p, score: sameFamily * 2 + crossCategory }; 
+    return { p, score: sameFamily * 2 + crossCategory };
   });
 
   const chosen = withScore
@@ -75,7 +74,7 @@ export default function SecondTask({ slug }: { slug?: string }) {
     return p ?? products[0];
   }, [slug]);
 
-  const currentVariant = product.variants[0]; 
+  const currentVariant = product.variants[0];
   const currentColor = currentVariant?.colorCode || currentVariant?.color || "";
   const suggestions = useMemo(
     () => suggestSameColor(product, currentColor, products, 6),
@@ -86,9 +85,11 @@ export default function SecondTask({ slug }: { slug?: string }) {
     <section className="mx-auto mt-16 max-w-[1200px] px-4">
       <h2 className="mb-6 text-2xl tracking-wide">STYLE WITH</h2>
 
-      <div className="grid grid-cols-1 gap-8 md:gap-10 lg:grid-cols-[minmax(260px,560px)_1fr]">
-        <div className="sticky top-24 self-start">
-          <div className="aspect-[3/4] w-full overflow-hidden rounded-2xl bg-neutral-100">
+      {/* 1 cột dưới md; 2 cột từ md↑ để 150–175% vẫn giữ bố cục; 200% (view <768px) rơi về 1 cột */}
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(260px,48vw)_1fr] lg:grid-cols-[minmax(300px,560px)_1fr] md:gap-10">
+        {/* Trái: ảnh chính */}
+        <div className="md:sticky md:top-24 md:self-start">
+          <div className="aspect-[3/4] w-full max-h-[85vh] overflow-hidden rounded-2xl bg-neutral-100">
             <img
               src={currentVariant?.images?.[0] ?? "/images/placeholder.jpg"}
               alt={product.name}
@@ -97,49 +98,49 @@ export default function SecondTask({ slug }: { slug?: string }) {
           </div>
         </div>
 
-<div className="max-h-[90vh] overflow-auto pr-2">
-  <div className="divide-y divide-neutral-200">
-    {suggestions.map((p) => {
-      const v = p.variants[0];
-      const href = `/product-detail?slug=${p.slug}`;
-      return (
-        <div
-          key={p.id}
-          className="grid grid-cols-[100px_1fr_auto] items-center gap-4 py-6 md:gap-6"
-        >
-          <Link href={href} className="block">
-            <div className="aspect-[3/4] w-[90px] overflow-hidden rounded-xl bg-neutral-100">
-              <img
-                src={v?.images?.[0] ?? "/images/placeholder.jpg"}
-                alt={`${p.name} - ${v?.color}`}
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </Link>
+        {/* Phải: danh sách phối đồ */}
+        <div className="md:max-h-[90vh] md:overflow-auto md:pr-2">
+          <div className="divide-y divide-neutral-200">
+            {suggestions.map((p) => {
+              const v = p.variants[0];
+              const href = `/product-detail?slug=${p.slug}`;
+              return (
+                <div
+                  key={p.id}
+                  className="grid grid-cols-[100px_1fr_auto] items-center gap-4 py-6 md:gap-6"
+                >
+                  <Link href={href} className="block">
+                    <div className="aspect-[3/4] w-[90px] overflow-hidden rounded-xl bg-neutral-100">
+                      <img
+                        src={v?.images?.[0] ?? "/images/placeholder.jpg"}
+                        alt={`${p.name} - ${v?.color}`}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                  </Link>
 
-          <div className="min-w-0">
-            <Link href={href} className="block">
-              <p className="truncate text-[15px] font-semibold">{p.name}</p>
-              <p className="mt-0.5 text-[12px] uppercase tracking-wide text-neutral-500">
-                {p.material}
-              </p>
-              <p className="mt-1 text-[12px] text-neutral-500">{v?.color}</p>
-              <p className="mt-2 text-sm font-medium">
-                {money(v?.price ?? p.price, p.currency)}
-              </p>
-            </Link>
+                  <div className="min-w-0">
+                    <Link href={href} className="block">
+                      <p className="truncate text-[15px] font-semibold">{p.name}</p>
+                      <p className="mt-0.5 text-[12px] uppercase tracking-wide text-neutral-500">
+                        {p.material}
+                      </p>
+                      <p className="mt-1 text-[12px] text-neutral-500">{v?.color}</p>
+                      <p className="mt-2 text-sm font-medium">
+                        {money(v?.price ?? p.price, p.currency)}
+                      </p>
+                    </Link>
+                  </div>
+
+                  <button className="ml-auto hidden whitespace-nowrap rounded-md border px-4 py-2 text-[12px] font-medium hover:bg-neutral-50 md:inline-flex">
+                    ADD TO CART
+                  </button>
+                </div>
+              );
+            })}
           </div>
-
-          <button className="ml-auto hidden whitespace-nowrap rounded-md border px-4 py-2 text-[12px] font-medium hover:bg-neutral-50 md:inline-flex">
-            ADD TO CART
-          </button>
         </div>
-      );
-    })}
-  </div>
-</div>
       </div>
-
     </section>
   );
 }
