@@ -1,9 +1,6 @@
 import HeaderAction from "./headerAction";
-<<<<<<< HEAD
 import Image from "next/image";
 
-=======
->>>>>>> b0f97ec307d5f1e77827b05f315a146929860d4f
 const Header = () => {
   const navigation = {
     menu: [
